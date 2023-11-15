@@ -13,8 +13,12 @@ Rails.application.routes.draw do
   get '/usuarios', to: 'usuarios#listar_usuarios'
   put '/usuarios/:id', to: 'usuarios#atualizar_usuario'
 
-  # registro_acesso_usuarios
+  get '/alunos', to: 'usuarios#listar_alunos'
 
+  # registro_acesso_usuarios
   get '/registro_acesso_usuarios', to: 'registro_acesso_usuarios#listar_registros'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  # permissao_usuarios
+  post '/usuarios/:id/permissoes_usuario', to: 'permissao_usuarios#criar_permissao'
+  get '/usuarios/:id/permissoes_usuario', to: 'permissao_usuarios#listar_permissoes'
 end

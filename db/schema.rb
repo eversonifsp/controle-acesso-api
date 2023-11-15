@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2023_11_15_172134) do
   end
 
   create_table "permissao_usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "data_inicio", null: false
-    t.datetime "data_fim", null: false
+    t.date "data_inicio", null: false
+    t.date "data_fim", null: false
     t.bigint "usuario_id", null: false
     t.string "descricao_permissao"
     t.datetime "created_at", precision: 6, null: false

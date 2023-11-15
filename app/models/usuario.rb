@@ -17,6 +17,14 @@ class Usuario < ApplicationRecord
     tipo == 'admin'
   end
 
+  def adulto?
+    Time.now.to_date >= (data_nascimento.to_date + 18.years)
+  end
+
+  def secretario?
+    tipo == 'secretario'
+  end
+
   def autorizado?
     if tipo == 'aluno'
       adulto? || menor_idade_autorizado?
@@ -26,11 +34,7 @@ class Usuario < ApplicationRecord
   end
   
   private
-
-  def adulto?
-    Time.now.to_date >= (data_nascimento.to_date + 18.years)
-  end
-
+  
   def menor_idade_autorizado?
     permissao_usuarios.where(data_inicio..data_fim, Time.now).any?
   end
