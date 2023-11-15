@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2023_11_15_172134) do
   create_table "registro_acesso_usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "usuario_id", null: false
     t.integer "tipo", default: 0, null: false
-    t.datetime "data", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["usuario_id"], name: "index_registro_acesso_usuarios_on_usuario_id"

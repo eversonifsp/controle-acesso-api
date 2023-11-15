@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  get '/users', to: 'usuarios#list_users'
+  # usuarios
+  get '/usuarios', to: 'usuarios#listar_usuarios'
+  put '/usuarios/:id', to: 'usuarios#atualizar_usuario'
+
+  # registro_acesso_usuarios
+
+  get '/registro_acesso_usuarios', to: 'registro_acesso_usuarios#listar_registros'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
