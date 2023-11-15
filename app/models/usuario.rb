@@ -5,4 +5,6 @@ class Usuario < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: self,
          authentication_keys: [:prontuario]
+
+  has_many :permissao_usuarios
 end

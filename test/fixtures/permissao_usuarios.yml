@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data_inicio: 2023-11-15 14:05:01
+  data_fim: 2023-11-15 14:05:01
+  usuario: one
+  descricao_permissao: MyString
+
+two:
+  data_inicio: 2023-11-15 14:05:01
+  data_fim: 2023-11-15 14:05:01
+  usuario: two
+  descricao_permissao: MyString
