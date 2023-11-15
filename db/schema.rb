@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2023_11_15_172134) do
     t.string "cpf", null: false
     t.integer "tipo", default: 0, null: false
     t.string "telefone"
-    t.datetime "data_nascimento"
+    t.date "data_nascimento"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["jti"], name: "index_usuarios_on_jti"
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true

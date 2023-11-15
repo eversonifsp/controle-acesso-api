@@ -96,6 +96,9 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.7.1)
@@ -203,6 +206,7 @@ DEPENDENCIES
   devise
   devise-jwt
   dotenv-rails
+  jbuilder
   jsonapi-serializer
   listen (~> 3.3)
   mysql2 (~> 0.5)

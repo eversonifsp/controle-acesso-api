@@ -17,4 +17,4 @@ Usuario.create(email: 'lula13@gmail.com', tipo: 'visitante', nome: 'Lula', passw
 
 Usuario.create(email: 'secretaria@gmail.com', tipo: 'secretario', nome: 'Paolla', password: '123123', cpf: '000-000-000-05')
 
-Usuario.create(email: 'admin@gmail.com', tipo: 'admin', nome: 'Rogerio', password: '123123', cpf: '000-000-000-06')
+Usuario.create(email: 'admin@gmail.com', tipo: 'admin', nome: 'Rogerio', password: '123123', cpf: '000-000-000-06', prontuario: 'CB4343434')

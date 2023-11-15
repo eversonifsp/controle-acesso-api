@@ -13,6 +13,10 @@ class Usuario < ApplicationRecord
 
   enum tipo: [:outros_colaboradores_campus, :aluno, :admin, :secretario, :porteiro, :visitante]
   
+  def admin?
+    tipo == 'admin'
+  end
+
   def autorizado?
     if tipo == 'aluno'
       adulto? || menor_idade_autorizado?

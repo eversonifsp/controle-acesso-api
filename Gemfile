@@ -29,6 +29,7 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
 
+gem 'jbuilder'
 gem 'dotenv-rails'
 
 group :development, :test do
