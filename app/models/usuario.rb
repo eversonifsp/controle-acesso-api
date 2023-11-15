@@ -12,4 +12,22 @@ class Usuario < ApplicationRecord
   has_one_attached :foto
 
   enum tipo: [:outros_colaboradores_campus, :aluno, :admin, :secretario, :porteiro, :visitante]
+  
+  def autorizado?
+    if tipo == 'aluno'
+      adulto? || menor_idade_autorizado?
+    else 
+      true
+    end  
+  end
+  
+  private
+
+  def adulto?
+    Time.now.to_date >= (data_nascimento.to_date + 18.years)
+  end
+
+  def menor_idade_autorizado?
+    permissao_usuarios.where(data_inicio..data_fim, Time.now).any?
+  end
 end
