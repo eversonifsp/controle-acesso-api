@@ -8,4 +8,8 @@ class Usuario < ApplicationRecord
 
   has_many :permissao_usuarios
   has_many :registro_acesso_usuarios
+
+  has_one_attached :foto
+
+  enum tipo: [:outros_colaboradores_campus, :aluno, :admin, :secretario, :porteiro, :visitante]
 end

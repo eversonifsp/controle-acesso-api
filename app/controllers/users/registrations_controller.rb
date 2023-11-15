@@ -9,8 +9,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
   
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[prontuario email password])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[prontuario email password])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[prontuario email password foto nome data_nascimento telefone funcao cpf])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[prontuario email password foto nome data_nascimento telefone funcao cpf])
   end
 
   def respond_with(current_user, _opts = {})
