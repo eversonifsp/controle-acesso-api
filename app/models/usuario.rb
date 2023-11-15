@@ -7,4 +7,5 @@ class Usuario < ApplicationRecord
          authentication_keys: [:prontuario]
 
   has_many :permissao_usuarios
+  has_many :registro_acesso_usuarios
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_15_170501) do
+ActiveRecord::Schema.define(version: 2023_11_15_171346) do
 
   create_table "permissao_usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "data_inicio"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2023_11_15_170501) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["usuario_id"], name: "index_permissao_usuarios_on_usuario_id"
+  end
+
+  create_table "registro_acesso_usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "usuario_id", null: false
+    t.integer "tipo"
+    t.datetime "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["usuario_id"], name: "index_registro_acesso_usuarios_on_usuario_id"
   end
 
   create_table "usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -43,4 +52,5 @@ ActiveRecord::Schema.define(version: 2023_11_15_170501) do
   end
 
   add_foreign_key "permissao_usuarios", "usuarios"
+  add_foreign_key "registro_acesso_usuarios", "usuarios"
 end
