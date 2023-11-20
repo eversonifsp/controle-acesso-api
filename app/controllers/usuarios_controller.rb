@@ -3,8 +3,22 @@ class UsuariosController < ApplicationController
 
   before_action :checar_admin, only: [:atualizar_usuario, :listar_usuarios]
   before_action :checar_secretario, only: [:listar_alunos]
+  before_action :checar_porteiro, only: [:criar_visitante]
 
   before_action :setar_usuario, only: [:atualizar_usuario]
+
+  def criar_visitante
+    @usuario = Usuario.new(usuario_params)
+    @usuario.tipo = :visitante
+    @usuario.password = Devise.friendly_token.first(8)
+    @usuario.registro_acesso_usuarios.new(tipo: :entrada)
+
+    if @usuario.save
+      render :show, status: :created
+    else
+      render json: @usuario.errors, status: :unprocessable_entity
+    end
+  end
 
   def listar_usuarios
     @usuarios = Usuario.all
@@ -27,6 +41,10 @@ class UsuariosController < ApplicationController
   end
 
   private
+
+  def usuario_params
+    params.permit(:email, :nome, :cpf, :telefone, :foto)
+  end
 
   def filtrar_por_prontuario
     @usuarios = @usuarios.where("prontuario LIKE ?", "%#{params[:prontuario]}%")
