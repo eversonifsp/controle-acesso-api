@@ -47,7 +47,7 @@ class RegistroAcessoUsuariosController < ApplicationController
   end
 
   def filtrar_por_data
-    data = Date.parse(params[:created_at]).to_datetime
+    data = Date.parse(params[:data]).to_datetime
     @registro_acesso_usuarios = @registro_acesso_usuarios.where(created_at: data.beginning_of_day..data.end_of_day) 
   end
 
