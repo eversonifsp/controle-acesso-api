@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   # permissao_usuarios
   post '/usuarios/:id/permissoes_usuario', to: 'permissao_usuarios#criar_permissao'
   get '/usuarios/:id/permissoes_usuario', to: 'permissao_usuarios#listar_permissoes'
+
+  post '/usuarios/importar_csv', to: 'usuarios#importar_usuarios'
 end

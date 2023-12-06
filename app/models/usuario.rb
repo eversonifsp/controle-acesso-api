@@ -6,7 +6,7 @@ class Usuario < ApplicationRecord
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
 
-  has_many :registro_acesso_usuarios
+  has_many :registro_acesso_usuarios, dependent: :destroy
 
   has_one_attached :foto
 
@@ -15,7 +15,7 @@ class Usuario < ApplicationRecord
 
   # Substitui a forma padrao do devise de autenticar, portando atraves do 
   # atributo login é possivel saber se é um cpf, prontuario ou email
-  
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))

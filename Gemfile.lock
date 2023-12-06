@@ -67,6 +67,7 @@ GEM
     byebug (11.1.3)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    csv (3.2.2)
     date (3.3.4)
     devise (4.9.3)
       bcrypt (~> 3.0)
@@ -208,6 +209,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
+  csv
   devise
   devise-jwt
   dotenv-rails
