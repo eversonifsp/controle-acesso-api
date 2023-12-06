@@ -34,10 +34,9 @@ class RegistroAcessoUsuariosController < ApplicationController
 
   def setar_usuario
     begin
-      if params[:prontuario].present?
-        @usuario = Usuario.find_by(prontuario: params[:prontuario])
-      elsif params[:cpf].present?
-        @usuario = Usuario.find_by(cpf: params[:cpf])
+      if params[:prontuario_cpf].present?
+        @usuario = Usuario.where('prontuario = ? OR cpf = ?', params[:prontuario_cpf], params[:prontuario_cpf]).first
+        @usuario.present? ? @usuario : raise(ActiveRecord::RecordNotFound.new("Usuário não encontrado"))
       else
         render json: { error: "Prontuário ou CPF não informado" }, status: :bad_request
       end
