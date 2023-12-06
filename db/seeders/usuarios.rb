@@ -1,5 +1,6 @@
-Usuario.create(email: 'everson@gmail.com', tipo: 'aluno', nome: 'Everson', password: '123123', cpf: '000-000-000-00', prontuario: 'CB3026353', data_nascimento: Date.new(2003, 5, 31))
-Usuario.create(email: 'jackson@gmail.com', tipo: 'aluno', nome: 'Jackson', password: '123123', cpf: '000-000-000-01', prontuario: 'CB3013189', data_nascimento: Date.new(2000, 12, 22))
+Usuario.create(email: 'everson@gmail.com', tipo: 'aluno', nome: 'Everson', password: '123123', cpf: '000-000-000-00', prontuario: 'CB3026353', data_nascimento: Date.new(2006, 5, 31), turno: 'manha')
+Usuario.create(email: 'jackson@gmail.com', tipo: 'aluno', nome: 'Jackson', password: '123123', cpf: '000-000-000-01', prontuario: 'CB3013189', data_nascimento: Date.new(2006, 12, 22), turno: 'tarde')
+Usuario.create(email: 'pereira@gmail.com', tipo: 'aluno', nome: 'Pereira', password: '123123', cpf: '000-000-000-10', prontuario: 'CB3013189', data_nascimento: Date.new(2006, 12, 22))
 
 Usuario.create(email: 'porteiro@gmail.com', tipo: 'porteiro', nome: 'Jose', password: '123123', cpf: '000-000-000-02', prontuario: 'CB1333333')
 

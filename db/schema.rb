@@ -40,16 +40,6 @@ ActiveRecord::Schema.define(version: 2023_11_15_172134) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "permissao_usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.date "data_inicio", null: false
-    t.date "data_fim", null: false
-    t.bigint "usuario_id", null: false
-    t.string "descricao_permissao"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["usuario_id"], name: "index_permissao_usuarios_on_usuario_id"
-  end
-
   create_table "registro_acesso_usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "usuario_id", null: false
     t.integer "tipo", default: 0, null: false
@@ -73,6 +63,7 @@ ActiveRecord::Schema.define(version: 2023_11_15_172134) do
     t.integer "tipo", default: 0, null: false
     t.string "telefone"
     t.date "data_nascimento"
+    t.integer "turno"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["jti"], name: "index_usuarios_on_jti"
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
@@ -80,6 +71,5 @@ ActiveRecord::Schema.define(version: 2023_11_15_172134) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "permissao_usuarios", "usuarios"
   add_foreign_key "registro_acesso_usuarios", "usuarios"
 end

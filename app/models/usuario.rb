@@ -12,7 +12,8 @@ class Usuario < ApplicationRecord
   has_one_attached :foto
 
   enum tipo: [:outros_colaboradores_campus, :aluno, :admin, :secretario, :porteiro, :visitante]
-  
+  enum turno: [:manha, :tarde]
+
   def admin?
     tipo == 'admin'
   end
@@ -40,6 +41,14 @@ class Usuario < ApplicationRecord
   private
   
   def menor_idade_autorizado?
-    permissao_usuarios.where('data_inicio <= ? AND data_fim >= ?', Time.now, Time.now).any?
+    return true unless turno.present?
+    
+    hora = turno == 'manha' ? 13 : 18
+
+    hora_agora = Time.now
+    hora_agora = Time.new(hora_agora.year, hora_agora.month, hora_agora.day, 20, 0, 0, hora_agora.utc_offset)
+    hora_limite = Time.new(hora_agora.year, hora_agora.month, hora_agora.day, hora, 0, 0, hora_agora.utc_offset)
+
+    hora_agora > hora_limite
   end
 end
