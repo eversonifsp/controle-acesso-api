@@ -46,7 +46,7 @@ class Usuario < ApplicationRecord
 
   def autorizado?
     if tipo == 'aluno'
-      adulto? || menor_idade_autorizado?
+      autorizado_sair == 'sim' || menor_idade_autorizado?
     else 
       true
     end  
@@ -55,7 +55,6 @@ class Usuario < ApplicationRecord
   private
   
   def menor_idade_autorizado?
-    return true if autorizado_sair == 'sim'
     return true unless turno.present?
     
     hora = turno == 'manha' ? 13 : 18
