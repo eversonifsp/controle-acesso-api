@@ -2,10 +2,10 @@ class UsuariosController < ApplicationController
   require 'csv'
   before_action :authenticate_usuario!
 
-  before_action :checar_admin, only: [:atualizar_usuario, :listar_usuarios, :importar_usuarios]
+  before_action :checar_admin, only: [:atualizar_usuario, :listar_usuarios, :importar_usuarios, :deletar_usuario]
   before_action :checar_secretario, only: [:listar_alunos]
   before_action :checar_porteiro, only: [:criar_visitante]
-  before_action :setar_usuario, only: [:atualizar_usuario]
+  before_action :setar_usuario, only: [:atualizar_usuario, :deletar_usuario]
 
   def importar_usuarios
     begin
@@ -14,8 +14,9 @@ class UsuariosController < ApplicationController
   
         arquivo_csv = params[:file].tempfile
   
-        CSV.foreach(arquivo_csv, headers: true, col_sep: ';') do |row|
-          data_to_insert = row.to_h.slice('nome', 'cpf', 'prontuario', 'email', 'password')
+        CSV.foreach(arquivo_csv, headers: true, col_sep: ',') do |row|
+          data_to_insert = row.to_h.deep_symbolize_keys.slice(:nome, :cpf, :prontuario, :email, :password, :turno, :tipo, :autorizado_sair)
+
           @usuario = Usuario.new(data_to_insert)
           @usuario.password = Devise.friendly_token if @usuario.password.blank?
           @usuario.save!
@@ -61,6 +62,10 @@ class UsuariosController < ApplicationController
     end
   end
 
+  def deletar_usuario
+    @usuario.destroy
+  end
+
   private
 
   def usuario_params
@@ -80,6 +85,6 @@ class UsuariosController < ApplicationController
   end
 
   def params_usuario
-    params.permit(:tipo)
+    params.permit(:nome, :cpf, :email, :telefone, :foto, :turno, :tipo, :autorizado_sair)
   end
 end

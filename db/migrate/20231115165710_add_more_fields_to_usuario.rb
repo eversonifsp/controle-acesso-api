@@ -6,5 +6,6 @@ class AddMoreFieldsToUsuario < ActiveRecord::Migration[6.1]
     add_column :usuarios, :telefone, :string
     add_column :usuarios, :data_nascimento, :date
     add_column :usuarios, :turno, :integer
+    add_column :usuarios, :autorizado_sair, :integer
   end
 end

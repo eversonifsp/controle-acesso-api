@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2023_11_15_172134) do
     t.string "telefone"
     t.date "data_nascimento"
     t.integer "turno"
+    t.integer "autorizado_sair"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["jti"], name: "index_usuarios_on_jti"
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true

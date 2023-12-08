@@ -12,6 +12,7 @@ class Usuario < ApplicationRecord
 
   enum tipo: [:outros_colaboradores_campus, :aluno, :admin, :secretario, :porteiro, :visitante]
   enum turno: [:manha, :tarde]
+  enum autorizado_sair: [:sim, :nao]
 
   # Substitui a forma padrao do devise de autenticar, portando atraves do 
   # atributo login é possivel saber se é um cpf, prontuario ou email
@@ -54,12 +55,12 @@ class Usuario < ApplicationRecord
   private
   
   def menor_idade_autorizado?
+    return true if autorizado_sair == 'sim'
     return true unless turno.present?
     
     hora = turno == 'manha' ? 13 : 18
 
     hora_agora = Time.now
-    hora_agora = Time.new(hora_agora.year, hora_agora.month, hora_agora.day, 20, 0, 0, hora_agora.utc_offset)
     hora_limite = Time.new(hora_agora.year, hora_agora.month, hora_agora.day, hora, 0, 0, hora_agora.utc_offset)
 
     hora_agora > hora_limite

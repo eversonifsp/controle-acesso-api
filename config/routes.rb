@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get '/usuarios', to: 'usuarios#listar_usuarios'
   put '/usuarios/:id', to: 'usuarios#atualizar_usuario'
+  post '/usuarios/importar_csv', to: 'usuarios#importar_usuarios'
+  delete '/usuarios/:id', to: 'usuarios#deletar_usuario'
 
   get '/alunos', to: 'usuarios#listar_alunos'
 
@@ -22,6 +24,4 @@ Rails.application.routes.draw do
   # permissao_usuarios
   post '/usuarios/:id/permissoes_usuario', to: 'permissao_usuarios#criar_permissao'
   get '/usuarios/:id/permissoes_usuario', to: 'permissao_usuarios#listar_permissoes'
-
-  post '/usuarios/importar_csv', to: 'usuarios#importar_usuarios'
 end
