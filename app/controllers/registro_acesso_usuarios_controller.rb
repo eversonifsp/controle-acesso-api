@@ -19,9 +19,8 @@ class RegistroAcessoUsuariosController < ApplicationController
   def listar_registros
     @registro_acesso_usuarios = RegistroAcessoUsuario.all.order(created_at: :desc)
     
-    filtrar_por_data if params[:created_at].present?
-    filtrar_por_prontuario if params[:prontuario].present?
-    filtrar_por_cpf if params[:cpf].present?
+    filtrar_por_data if params[:data].present?
+    filtrar_por_prontuario_cpf if params[:prontuario_cpf].present?
     
     render :index
   end
@@ -50,11 +49,7 @@ class RegistroAcessoUsuariosController < ApplicationController
     @registro_acesso_usuarios = @registro_acesso_usuarios.where(created_at: data.beginning_of_day..data.end_of_day) 
   end
 
-  def filtrar_por_prontuario
-    @registro_acesso_usuarios = @registro_acesso_usuarios.joins(:usuario).where("usuarios.prontuario LIKE ?", "%#{params[:prontuario]}%")
-  end
-
-  def filtrar_por_cpf
-    @registro_acesso_usuarios = @registro_acesso_usuarios.joins(:usuario).where("usuarios.cpf LIKE ?", "%#{params[:cpf]}%")
+  def filtrar_por_prontuario_cpf
+    @registro_acesso_usuarios = @registro_acesso_usuarios.joins(:usuario).where("usuarios.prontuario LIKE ? OR usuarios.cpf LIKE ?", "%#{params[:prontuario_cpf]}%", "%#{params[:prontuario_cpf]}%")
   end
 end
