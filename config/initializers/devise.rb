@@ -10,9 +10,6 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   config.authentication_keys = [:login]
-  config.jwt do |jwt|
-    jwt.expiration_time = 12.months.to_i
-  end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -80,7 +77,7 @@ Devise.setup do |config|
     jwt.revocation_requests = [
       ['DELETE', %r{^/logout$}]
     ]
-    jwt.expiration_time = 30.minutes.to_i
+    jwt.expiration_time = 12.months.to_i
   end
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the

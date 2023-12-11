@@ -44,12 +44,13 @@ class UsuariosController < ApplicationController
 
   def listar_usuarios
     @usuarios = Usuario.all
+    filtrar if params[:filtro].present?
     render :index
   end
 
   def listar_alunos
     @usuarios = Usuario.where(tipo: 'aluno')
-    filtrar_por_prontuario if params[:prontuario].present?
+    filtrar if params[:filtro].present?
     
     render :index
   end
@@ -76,8 +77,10 @@ class UsuariosController < ApplicationController
     end
   end
 
-  def filtrar_por_prontuario
-    @usuarios = @usuarios.where("prontuario LIKE ?", "%#{params[:prontuario]}%")
+  def filtrar
+    @usuarios = @usuarios.where("prontuario LIKE ? OR cpf LIKE ? OR LOWER(nome) LIKE ?", "%#{params[:filtro]}%", "%#{params[:filtro]}%", "%#{params[:filtro].downcase}%")
+
+    puts @usuarios.inspect
   end
 
   def setar_usuario
